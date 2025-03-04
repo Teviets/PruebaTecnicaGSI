@@ -1,0 +1,208 @@
+{
+	"info": {
+		"_postman_id": "2e3c6abb-07a1-45ed-8392-463d2fcaadab",
+		"name": "to do list interview backend krakenddev",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22435688",
+		"_collection_link": "https://ecsystems.postman.co/workspace/GSI-development~219ee9f2-99c1-4558-8b34-3944b98dc0ae/collection/22435688-2e3c6abb-07a1-45ed-8392-463d2fcaadab?action=share&source=collection_link&creator=22435688"
+	},
+	"item": [
+		{
+			"name": "log in",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"test@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gsi-interviews.camiapp.net/to-do/login",
+					"protocol": "https",
+					"host": [
+						"gsi-interviews",
+						"camiapp",
+						"net"
+					],
+					"path": [
+						"to-do",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create task",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNzQxMTA1NDM4LCJleHAiOjE3NDExOTE4Mzh9.nmVUCGhLf1ECV7APWlzIOBL8nWO81SsDzATE3IaIy7s",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_email\": \"test@gmail.com\",\n    \"title\": \"tarea test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gsi-interviews.camiapp.net/to-do/tasks/create",
+					"protocol": "https",
+					"host": [
+						"gsi-interviews",
+						"camiapp",
+						"net"
+					],
+					"path": [
+						"to-do",
+						"tasks",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get task by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNzQxMTA1NDM4LCJleHAiOjE3NDExOTE4Mzh9.nmVUCGhLf1ECV7APWlzIOBL8nWO81SsDzATE3IaIy7s",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://gsi-interviews.camiapp.net/to-do/tasks/2",
+					"protocol": "https",
+					"host": [
+						"gsi-interviews",
+						"camiapp",
+						"net"
+					],
+					"path": [
+						"to-do",
+						"tasks",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get tasks",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNzQxMTA1NDM4LCJleHAiOjE3NDExOTE4Mzh9.nmVUCGhLf1ECV7APWlzIOBL8nWO81SsDzATE3IaIy7s",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://gsi-interviews.camiapp.net/to-do/tasks?limit=5&order=-created_at&page=1",
+					"protocol": "https",
+					"host": [
+						"gsi-interviews",
+						"camiapp",
+						"net"
+					],
+					"path": [
+						"to-do",
+						"tasks"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "5"
+						},
+						{
+							"key": "order",
+							"value": "-created_at"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update task",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNzQxMTA1NDM4LCJleHAiOjE3NDExOTE4Mzh9.nmVUCGhLf1ECV7APWlzIOBL8nWO81SsDzATE3IaIy7s",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://gsi-interviews.camiapp.net/to-do/tasks/update/2",
+					"protocol": "https",
+					"host": [
+						"gsi-interviews",
+						"camiapp",
+						"net"
+					],
+					"path": [
+						"to-do",
+						"tasks",
+						"update",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete task",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNzQxMTA1NDM4LCJleHAiOjE3NDExOTE4Mzh9.nmVUCGhLf1ECV7APWlzIOBL8nWO81SsDzATE3IaIy7s",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://gsi-interviews.camiapp.net/to-do/tasks/delete/1",
+					"protocol": "https",
+					"host": [
+						"gsi-interviews",
+						"camiapp",
+						"net"
+					],
+					"path": [
+						"to-do",
+						"tasks",
+						"delete",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
