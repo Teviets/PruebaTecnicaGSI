@@ -1,0 +1,10 @@
+@use '../../../assets/Colors/colors.scss' as *;
+
+#header{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    gap: 45%;
+    background-color: $primary;
+}

@@ -1,0 +1,56 @@
+// _colors.scss - Paleta de colores
+
+// Colores base
+$primary: #003049;
+$secondary: #D62828;
+$accent: #F77F00;
+$highlight: #FCBF49;
+$background: #EAE2B7;
+
+// Variantes
+$error: darken($secondary, 10%);
+$warning: darken($accent, 10%);
+$success: darken($highlight, 10%);
+$info: lighten($primary, 10%);
+
+// Tonos más claros
+$primary-light: lighten($primary, 15%);
+$secondary-light: lighten($secondary, 15%);
+$accent-light: lighten($accent, 15%);
+$highlight-light: lighten($highlight, 15%);
+$background-light: lighten($background, 10%);
+
+// Tonos más oscuros
+$primary-dark: darken($primary, 15%);
+$secondary-dark: darken($secondary, 15%);
+$accent-dark: darken($accent, 15%);
+$highlight-dark: darken($highlight, 15%);
+$background-dark: darken($background, 10%);
+
+// Exportar como mapa de colores
+$colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "accent": $accent,
+  "highlight": $highlight,
+  "background": $background,
+  "error": $error,
+  "warning": $warning,
+  "success": $success,
+  "info": $info,
+  "primary-light": $primary-light,
+  "secondary-light": $secondary-light,
+  "accent-light": $accent-light,
+  "highlight-light": $highlight-light,
+  "background-light": $background-light,
+  "primary-dark": $primary-dark,
+  "secondary-dark": $secondary-dark,
+  "accent-dark": $accent-dark,
+  "highlight-dark": $highlight-dark,
+  "background-dark": $background-dark
+);
+
+// Función para obtener colores dinámicamente
+@function color($key) {
+  @return map-get($colors, $key);
+}

@@ -1,0 +1,56 @@
+.task-card{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.task-card-actions{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+}
+
+.task-card-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+#task-card-checkbox{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.task-card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Sombra suave
+  border-radius: 8px; // Bordes redondeados
+  transition: transform 0.2s, box-shadow 0.2s; // Transición suave
+
+  &:hover {
+    transform: translateY(-4px); // Efecto de elevación al pasar el mouse
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); // Sombra más pronunciada
+  }
+}
+
+.task-card-content {
+  padding: 1.5rem; // Espaciado interno
+}
+
+.task-card-actions {
+  display: flex;
+  justify-content: flex-end; // Alinea los botones a la derecha
+  padding: 1rem; // Espaciado interno
+}
+
+#task-card-checkbox {
+  display: flex;
+  justify-content: flex-start; // Alinea el checkbox a la izquierda
+  padding: 1rem; // Espaciado interno
+}
