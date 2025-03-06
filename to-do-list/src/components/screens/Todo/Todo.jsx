@@ -4,18 +4,24 @@ import TaskCard from '../../ui/TaskCard/TaskCard';
 import Header from '../../ui/Header/Header';
 import Pagination from '@mui/material/Pagination';
 import Filters from '../../ui/Filters/Filters'; // Importa el componente Filters
+import CircularProgress from '@mui/material/CircularProgress';
 import './Todo.scss';
 
 export default function Todo() {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const { token } = useAuth();
-
+  const [data, setData] = useState(null); // Estado para los datos de las tareas
+  const [loading, setLoading] = useState(true); // Estado para el estado de carga
+  const [error, setError] = useState(null); // Estado para los errores
+  const { token } = useAuth(); // Obtiene el token del contexto
   const [page, setPage] = useState(1); // Estado para la página actual
   const [orderBy, setOrderBy] = useState('created_at'); // Estado para el campo de ordenamiento
   const [orderDirection, setOrderDirection] = useState('asc'); // Estado para la dirección del ordenamiento
 
+  /**
+   * Función para obtener las tareas de la API
+   * @param {number} page - Página actual
+   * @param {string} orderBy - Campo de ordenamiento
+   * @param {string} orderDirection - Dirección del ordenamiento
+   */
   const fetchTasks = (page = 1, orderBy = 'created_at', orderDirection = 'asc') => {
     if (!token) {
       setError('No token found');
@@ -49,10 +55,17 @@ export default function Todo() {
       });
   };
 
+  /**
+   * Efecto para obtener las tareas al cargar el componente
+   */
   useEffect(() => {
     fetchTasks(page, orderBy, orderDirection); // Llama a fetchTasks con los filtros actuales
   }, [token, page, orderBy, orderDirection]); // Se ejecuta cuando cambian los filtros
 
+  /**
+   * Función para eliminar una tarea
+   * @param {number} taskId - ID de la tarea a eliminar
+   */
   const handleDeleteTask = (taskId) => {
     fetch(`/api/to-do/tasks/delete/${taskId}`, {
       method: 'DELETE',
@@ -79,20 +92,33 @@ export default function Todo() {
       });
   };
 
+  /**
+   * Función para manejar el cambio de página
+   * @param {object} event - Evento del cambio de página
+   * @param {number} newPage - Nueva página
+   */
   const handlePageChange = (event, newPage) => {
     setPage(newPage); // Cambia a la nueva página
   };
 
+  /**
+   * Función para manejar el cambio de campo de ordenamiento
+   * @param {object} event - Evento del cambio de campo de ordenamiento
+   */
   const handleOrderByChange = (event) => {
     setOrderBy(event.target.value); // Actualiza el campo de ordenamiento
   };
 
+  /**
+   * Función para manejar el cambio de dirección de ordenamiento
+   * @param {object} event - Evento del cambio de dirección de ordenamiento
+   */
   const handleOrderDirectionChange = (event) => {
     setOrderDirection(event.target.value); // Actualiza la dirección del ordenamiento
   };
 
   if (loading) {
-    return <div>Cargando...</div>;
+    return <CircularProgress />;
   }
 
   if (error) {
@@ -110,10 +136,15 @@ export default function Todo() {
         onOrderByChange={handleOrderByChange}
         onOrderDirectionChange={handleOrderDirectionChange}
       />
-
       <div id='task-list-content'>
         {data && data.data && data.data.map(task => (
-          <TaskCard key={task.id} task={task} onDelete={() => handleDeleteTask(task.id)} />
+          <TaskCard 
+            key={task.id} 
+            task={task} 
+            onTaskModified={fetchTasks} // Solo recarga la lista cuando se modifica
+            onTaskDeleted={() => handleDeleteTask(task.id)} // Maneja la eliminación
+          />
+        
         ))}
       </div>
 

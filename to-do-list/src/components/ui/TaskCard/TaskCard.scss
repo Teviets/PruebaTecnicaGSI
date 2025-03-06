@@ -6,28 +6,6 @@
     padding: 10px;
 }
 
-.task-card-actions{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    gap: 5px;
-}
-
-.task-card-content{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 5px;
-}
-
-#task-card-checkbox{
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-}
-
 .task-card {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Sombra suave
   border-radius: 8px; // Bordes redondeados
@@ -40,20 +18,16 @@
 }
 
 .task-card-content {
-  padding: 1.5rem; // Espaciado interno
+  .task-description {
+      display: -webkit-box;
+      -webkit-line-clamp: 4; /* Limita a 4 líneas */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis; /* Agrega el "..." al final */
+      line-height: 1.5; /* Ajusta la altura de las líneas */
+  }
 }
 
-.task-card-actions {
-  display: flex;
-  justify-content: flex-end; // Alinea los botones a la derecha
-  padding: 1rem; // Espaciado interno
-}
-
-#task-card-checkbox {
-  display: flex;
-  justify-content: flex-start; // Alinea el checkbox a la izquierda
-  padding: 1rem; // Espaciado interno
-}
 
 @media screen and (max-width: 480px) {
   #task-card-last-update{

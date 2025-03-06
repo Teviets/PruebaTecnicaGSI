@@ -1,15 +1,24 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 
+// Crea el contexto de autenticación
 const AuthContext = createContext();
-
+/**
+ * Hook para obtener el contexto de autenticación
+ * @returns {object} - Contexto de autenticación
+ */
 export function useAuth() {
   return useContext(AuthContext);
 }
 
+/**
+ * Proveedor de autenticación
+ * @param {object} children - Componentes hijos
+ * @returns {object} - Proveedor de autenticación
+ */
 export function AuthProvider({ children }) {
   // Inicializa desde localStorage
-  const [token, setToken] = useState(localStorage.getItem('token') || null);
-  const [email, setEmail] = useState(localStorage.getItem('email') || '');
+  const [token, setToken] = useState(localStorage.getItem('token') || null); // Estado para el token
+  const [email, setEmail] = useState(localStorage.getItem('email') || ''); // Estado para el email
   const [isAuthenticated, setIsAuthenticated] = useState(!!token); // Determina si está autenticado basado en la existencia del token
 
   useEffect(() => {
@@ -24,6 +33,11 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
+  /**
+   * Función para iniciar sesión
+   * @param {string} newToken - Token de autenticación
+   * @param {string} userEmail - Email del usuario
+   */
   const login = (newToken, userEmail) => {
     // Guarda en estado y localStorage
     localStorage.setItem('token', newToken);
@@ -31,10 +45,11 @@ export function AuthProvider({ children }) {
     setToken(newToken);
     setEmail(userEmail);
     setIsAuthenticated(true);
-    
-    console.log('Login successful. Email:', userEmail); // Depuración
   };
 
+  /**
+   * Función para cerrar sesión
+   */
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('email');
@@ -42,11 +57,6 @@ export function AuthProvider({ children }) {
     setEmail('');
     setIsAuthenticated(false);
   };
-
-  // Para depuración
-  useEffect(() => {
-    console.log('Current auth state:', { isAuthenticated, token, email });
-  }, [isAuthenticated, token, email]);
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, token, email, login, logout }}>

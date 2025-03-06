@@ -16,7 +16,8 @@ const Filters = ({ orderBy, orderDirection, onOrderByChange, onOrderDirectionCha
         justifyContent: "space-between", 
         width: "100%",
         maxWidth: 500, // Puedes ajustar este valor según tu diseño
-        margin: "auto"
+        margin: "auto",
+        flexShrink: 0
       }}
     >
       <FormControl variant="outlined" size="small" sx={{ width: "100%", maxWidth: 200 }}>

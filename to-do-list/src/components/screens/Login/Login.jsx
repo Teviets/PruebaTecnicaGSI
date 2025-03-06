@@ -19,11 +19,14 @@ import { useAuth } from '-@-/components/auth/AuthContext.jsx';
 import { Navigate } from 'react-router-dom';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
-  const { login } = useAuth();
+  const [email, setEmail] = useState(''); // Estado para el email
+  const [error, setError] = useState(''); // Estado para los errores
+  const navigate = useNavigate(); // Hook para la navegación
+  const { login } = useAuth(); // Función de login del contexto
 
+  /**
+   * Función para manejar el inicio de sesión
+   */
   const handleLogin = async () => {
     if (!Constant.emailRegex.test(email)) {
       setError('Invalid email');
@@ -64,10 +67,20 @@ export default function Login() {
   };
 
   return (
-    <div id='login-container'>
-      <Box sx={{ minWidth: 275, width: 500}}>
-        <Card variant="outlined">
-          <CardContent>
+    <div id='login-container'
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '92%',
+      padding: '15px'
+    }}>
+      <Box sx={{ 
+          minWidth: 50, 
+          width: 500
+        }} id='login-box'>
+        <Card variant="outlined" style={{ padding: 20 }}>
+          <CardContent style={{ textAlign: 'center' }}>
       
             <LuListTodo size={50} />
             <br />

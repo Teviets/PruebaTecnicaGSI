@@ -7,7 +7,7 @@ import { CiLogout } from "react-icons/ci";
 
 export default function Header({ onTaskAdded = () => {} }) {
   // Obtén el email desde el contexto de autenticación
-  const { email } = useAuth();
+  const { email } = useAuth(); // email es el email del usuario autenticado
 
   return (
     <div id='header'>
