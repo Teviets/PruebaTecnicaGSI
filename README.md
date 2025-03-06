@@ -93,6 +93,4 @@ This is a task management project developed in React with Material UI. It allows
 
 Email: sestradat.37@gmail.com  
 Phone: +502 41669282
-```
 
-Let me know if you need any modifications! 🚀
