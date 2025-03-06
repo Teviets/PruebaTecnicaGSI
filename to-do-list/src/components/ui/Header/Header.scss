@@ -8,3 +8,20 @@
     gap: 10%;
     background-color: $primary;
 }
+
+.header__buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+@media screen and (max-width: 768px){
+    #header h3 {
+        display: none;
+    }
+
+    #header{
+        width: 100%;
+    }
+    
+}

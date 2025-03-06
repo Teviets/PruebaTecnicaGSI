@@ -122,7 +122,7 @@ export default function DialogForm({  isEdit, taskId, onTaskModified = () => {} 
 
   return (
     <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-        <Button onClick={handleClickOpen}>
+        <Button onClick={handleClickOpen} height={'100%'} >
             { isEdit ? <MdModeEditOutline size={25}/> : <IoMdAdd size={25} /> }
         </Button>
         <Dialog
@@ -134,30 +134,30 @@ export default function DialogForm({  isEdit, taskId, onTaskModified = () => {} 
         >
             <DialogTitle>{"Add Task"}</DialogTitle>
             <DialogContent>
-                <DialogContentText>
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="title"
-                        label="Task title"
-                        type="text"
-                        fullWidth
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        />
-                    <TextField
-                        autoFocus
-                        margin="dense"
-                        id="description"
-                        label="Description"
-                        type="text"
-                        value={description}
-                        fullWidth
-                        multiline
-                        minRows={4}
-                        onChange={(e) => setDescription(e.target.value)}
-                        />
-                </DialogContentText>
+            <DialogContentText component={'div'}>
+                <TextField
+                    autoFocus
+                    margin="dense"
+                    id="title"
+                    label="Task title"
+                    type="text"
+                    fullWidth
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    />
+                <TextField
+                    autoFocus
+                    margin="dense"
+                    id="description"
+                    label="Description"
+                    type="text"
+                    value={description}
+                    fullWidth
+                    multiline
+                    minRows={4}
+                    onChange={(e) => setDescription(e.target.value)}
+                    />
+            </DialogContentText>
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleClose}>

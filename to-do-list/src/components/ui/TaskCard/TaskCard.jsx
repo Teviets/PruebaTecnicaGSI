@@ -8,10 +8,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Checkbox from '@mui/material/Checkbox';
 
-import DialogForm from '../DialogForm/DialogForm';
-
 import { MdDelete } from "react-icons/md";
-import { MdModeEditOutline } from "react-icons/md";
 
 import './TaskCard.scss';
 
@@ -61,19 +58,18 @@ export default function TaskCard({ task, onTaskModified }) {
                 </CardActions>
                 <CardContent className='task-card-content'>
                     { task.updated_at ? 
-                    <Typography color="textSecondary" gutterBottom>
+                    <Typography color="textSecondary" gutterBottom id='task-card-last-update'>
                         Last update: {cleanDate(task.updated_at)}
                     </Typography>
                      : 
-                    <Typography color="textSecondary" gutterBottom>
+                    <Typography color="textSecondary" gutterBottom id='task-card-last-update'>
                         Last update: {cleanDate(task.created_at)}
                     </Typography>
                     }
                     
                     <Typography variant="h5" component="h2">
-                        {task.title}
+                        # {task.id} | {task.title}
                     </Typography>
-                    <br />
                     <Typography variant="body2" component="p">
                         {task.description}
                     </Typography>

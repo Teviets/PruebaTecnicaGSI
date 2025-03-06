@@ -54,3 +54,11 @@
   justify-content: flex-start; // Alinea el checkbox a la izquierda
   padding: 1rem; // Espaciado interno
 }
+
+@media screen and (max-width: 480px) {
+  #task-card-last-update{
+    display: none;
+  }
+
+  
+}
