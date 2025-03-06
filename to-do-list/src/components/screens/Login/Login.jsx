@@ -54,8 +54,8 @@ export default function Login() {
   
       const data = await response.json();
       const token = data.data.token;
-  
-      login(token);
+      
+      login(token, email);
       navigate('/tasks');
     } catch (error) {
       console.error('Full error details:', error);

@@ -1,32 +1,17 @@
-import React, { useEffect, useState }  from 'react'
-
+import React from 'react'
 import './Header.scss'
+import DialogForm from '../DialogForm/DialogForm.jsx';
+import { useAuth } from '../../auth/AuthContext.jsx';
 
-import Button from '@mui/material/Button';
-
-import { IoMdAdd } from "react-icons/io";
-
-export default function Header() {
-
-    const [email, setEmail] = useState('');
-
-    useEffect(() => {
-        const storedEmail = localStorage.getItem('email');
-        if (storedEmail) {
-            setEmail(storedEmail);
-        }
-    }
-    , [email]);
+export default function Header({ onTaskAdded = () => {} }) {
+  // Obtén el email desde el contexto de autenticación
+  const { email } = useAuth();
 
   return (
     <div id='header'>
         <h3> {email} </h3>
         <h1>Task Manager</h1>
-        <Button>
-            <IoMdAdd size={25}/>
-        </Button>
-
-        
+        <DialogForm onTaskModified={onTaskAdded}/>
     </div>
   )
 }

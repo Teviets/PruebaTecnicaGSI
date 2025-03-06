@@ -7,34 +7,49 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [token, setToken] = useState(null); // Almacena el token
+  // Inicializa desde localStorage
+  const [token, setToken] = useState(localStorage.getItem('token') || null);
   const [email, setEmail] = useState(localStorage.getItem('email') || '');
+  const [isAuthenticated, setIsAuthenticated] = useState(!!token); // Determina si está autenticado basado en la existencia del token
 
   useEffect(() => {
-    if (token) {
+    // Verifica si hay token y email en localStorage al cargar
+    const storedToken = localStorage.getItem('token');
+    const storedEmail = localStorage.getItem('email');
+    
+    if (storedToken && storedEmail) {
+      setToken(storedToken);
+      setEmail(storedEmail);
       setIsAuthenticated(true);
     }
-  }, [token]);
+  }, []);
 
-  const login = (token) => {
-    localStorage.setItem('email', email);
-    localStorage.setItem('token', token); // Almacena el token
-    setToken(token); // Almacena el token
-    setEmail(email);
-    setIsAuthenticated(true); // Marca al usuario como autenticado
+  const login = (newToken, userEmail) => {
+    // Guarda en estado y localStorage
+    localStorage.setItem('token', newToken);
+    localStorage.setItem('email', userEmail);
+    setToken(newToken);
+    setEmail(userEmail);
+    setIsAuthenticated(true);
+    
+    console.log('Login successful. Email:', userEmail); // Depuración
   };
 
   const logout = () => {
-    setToken(null); // Elimina el token
-    setEmail('');
+    localStorage.removeItem('token');
     localStorage.removeItem('email');
-    localStorage.removeItem('token'); // Elimina el token
-    setIsAuthenticated(false); // Marca al usuario como no autenticado
+    setToken(null);
+    setEmail('');
+    setIsAuthenticated(false);
   };
 
+  // Para depuración
+  useEffect(() => {
+    console.log('Current auth state:', { isAuthenticated, token, email });
+  }, [isAuthenticated, token, email]);
+
   return (
-    <AuthContext.Provider value={{ isAuthenticated, token, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, token, email, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
