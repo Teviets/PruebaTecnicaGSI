@@ -14,7 +14,7 @@ This is a task management project developed in React with Material UI. It allows
 1. Clone the repository:
    ```sh
    git clone https://github.com/Teviets/PruebaTecnicaGSI
-   cd repository-name
+   cd to-do-list
    ```
 2. Install dependencies:
    ```sh
